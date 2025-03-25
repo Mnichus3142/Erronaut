@@ -70,7 +70,7 @@ export class ErrorHandler {
         if (error.stack) {
           const stack = error.stack.split('\n');
           if (stack.length > 1) {
-            return stack[1];
+            return `At ${stack[2].trim().replace(/\s+at\s+/, 'at ').slice(3)}`;
           }
         }
         return '';
@@ -81,16 +81,33 @@ export class ErrorHandler {
       const message = chalk.bold.rgb(255, 0, 0)(`Message: ${error.message}`);
       
       let additionalInfo = '';
+
       if (error.details) {
-          additionalInfo = Object.entries(error.details)
-              .filter(([key]) => key !== 'message')
-              .map(([key, value]) => `${key}: ${JSON.stringify(value)}`)
-              .join('\n');
+        additionalInfo = Object.entries(error.details)
+            .filter(([key]) => key !== 'message')
+            .map(([key, value]) => {
+                const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                let stringValue = '';
+    
+                if (typeof value === 'object' && value !== null) {
+                    stringValue = Object.entries(value)
+                        .map(([k, v]) => {
+                            const jsonValue = JSON.stringify(v).replace(/^"|"$/g, '');
+                            return `    ${k.charAt(0).toUpperCase() + k.slice(1)}: ${jsonValue.charAt(0).toUpperCase() + jsonValue.slice(1)}`;
+                        })
+                        .join('\n');
+                } else {
+                    stringValue = `${JSON.stringify(value).replace(/^"|"$/g, '')}`;
+                }
+    
+                return `${formattedKey}:${key === 'code' ? " " + stringValue : "\n\n" + stringValue}`;
+            })
+            .join('\n\n');
       }
 
       console.log(
         boxen(
-            `${errorTitle}\n\n${message}${additionalInfo ? '\n\n' + additionalInfo : ''}\n\n${this.getErrorLocation(error)}`, 
+            `${errorTitle}\n\n${message}\n\n${this.getErrorLocation(error)}${additionalInfo ? '\n\n' + additionalInfo : ''}`, 
             ErrorHandler.boxenOptions
         )
       );
