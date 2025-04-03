@@ -1,8 +1,6 @@
 import boxen from 'boxen';
 import chalk from 'chalk';
 
-export const initErrornaut = () => { return true }
-
 // Define the global Error interface to extend the built-in Error constructor
 declare global {
   interface ErrorConstructor {
