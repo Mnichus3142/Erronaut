@@ -200,6 +200,7 @@ export class Debug extends MessageHandler {
 // This class extends the built-in Error class and adds additional functionality
 export class CustomError extends Error {
   details?: ErrorDetails;
+  private _errorHandled: boolean = false;
   
   // Constructor to initialize the CustomError
   constructor(input: string | ErrorDetails) {
@@ -219,6 +220,11 @@ export class CustomError extends Error {
     this.name = this.constructor.name;
     
     ErrorHandler.handleError(this);
+    this._errorHandled = true;
+  }
+  
+  get errorHandled(): boolean {
+    return this._errorHandled;
   }
 }
 
@@ -255,26 +261,30 @@ export class ErrorHandler {
   }
   
   // Static method to handle errors
-  public static handleError(error: Error & { details?: ErrorDetails }): void {
+  public static handleError(error: Error & { details?: ErrorDetails, errorHandled?: boolean }): void {
+    if (error.errorHandled) {
+      return;
+    }
+    
     const errorTitle = chalk.bold.white.bgRed(` Error - ${new Date().toLocaleString()} `);
     const message = chalk.bold.red(`Message: ${error.message}`);
     
     let additionalInfo = '';
     if (error.details) {
-      additionalInfo = MessageHandler.formatAdditionalInfo(error.details);
+      additionalInfo = MessageHandler.formatAdditionalInfo(error.details.details);
     }
     
     let location = '';
     if (error.stack) {
       const stackLines = error.stack.split('\n');
       if (stackLines.length > 1) {
-        location = stackLines[1].trim();
+        location = stackLines[2].trim();
       }
     }
     
     console.log(
       boxen(
-        `${errorTitle}\n\n${message}${additionalInfo ? '\n\n' + additionalInfo : ''}\n\n${location}`,
+        `${errorTitle}\n\n${message}${additionalInfo ? '\n\n' + error.details?.code + '\n\n' +additionalInfo : ''}\n\n${location}`,
         ErrorHandler.boxenOptions
       )
     );
