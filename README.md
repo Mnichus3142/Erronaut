@@ -45,7 +45,7 @@ import { Info, Debug, Warn } from "erronaut";
 
 #### Info
 
-![Info](doc/info.png)
+![Info](https://raw.githubusercontent.com/Mnichus3142/Erronaut/refs/heads/main/doc/info.png)
 
 ```JavaScript
 new Info({
@@ -58,7 +58,7 @@ new Info({
 ```
 
 #### Debug
-![Debug](doc/debug.png)
+![Debug](https://raw.githubusercontent.com/Mnichus3142/Erronaut/refs/heads/main/doc/debug.png)
 
 ```JavaScript
 new Debug({
@@ -72,7 +72,7 @@ new Debug({
 ```
 
 #### Warn
-![Warn](doc/warn.png)
+![Warn](https://raw.githubusercontent.com/Mnichus3142/Erronaut/refs/heads/main/doc/warn.png)
 
 
 ```JavaScript
@@ -87,7 +87,7 @@ new Warn({
 ```
 
 #### Error
-![Error](doc/error.png)
+![Error](https://raw.githubusercontent.com/Mnichus3142/Erronaut/refs/heads/main/doc/error.png)
 
 ```JavaScript
 throw new Error({
