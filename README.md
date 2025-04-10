@@ -6,9 +6,7 @@
 
 <div align="center">
 
- <!-- ![NPM Last Update](https://img.shields.io/npm/last-update/:packageName?style=for-the-badge&labelColor=000&color=fff) -->
-
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Mnichus3142/Erronaut/main?style=for-the-badge&labelColor=000&color=fff) ![GitHub Created At](https://img.shields.io/github/created-at/Mnichus3142/Erronaut?style=for-the-badge&labelColor=000&color=fff) ![GitHub License](https://img.shields.io/github/license/Mnichus3142/Erronaut?style=for-the-badge&labelColor=000&color=fff) ![GitHub top language](https://img.shields.io/github/languages/top/Mnichus3142/Erronaut?style=for-the-badge&labelColor=000&color=fff)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Mnichus3142/Erronaut/main?style=for-the-badge&labelColor=000&color=fff) ![GitHub Created At](https://img.shields.io/github/created-at/Mnichus3142/Erronaut?style=for-the-badge&labelColor=000&color=fff) ![GitHub License](https://img.shields.io/github/license/Mnichus3142/Erronaut?style=for-the-badge&labelColor=000&color=fff) ![GitHub top language](https://img.shields.io/github/languages/top/Mnichus3142/Erronaut?style=for-the-badge&labelColor=000&color=fff) ![NPM Last Update](https://img.shields.io/npm/v/erronaut?style=for-the-badge&labelColor=000&color=fff)
 
 
 </div>
