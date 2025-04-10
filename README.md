@@ -27,6 +27,12 @@ Erronaut is a modern TypeScript library designed to enhance error display in Nod
 
 <hr>
 
+## Installation
+Install using
+```bash
+npm i erronaut
+```
+
 ## Usage
 
 ### Setup
